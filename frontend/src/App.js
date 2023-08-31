@@ -1,10 +1,9 @@
 import React from "react";
+import GPT3Ask from "./components/GPT3Ask";
 
 function App() {
   return (
-    <div className="App">
-      hello
-    </div>
+    <GPT3Ask/>
   );
 }
 
