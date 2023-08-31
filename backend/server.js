@@ -1,31 +1,13 @@
-const express = require('express');
-const axios = require('axios');
-require('dotenv').config();
+import express from "express";
+import cors from "cors";
+import inspections from "./api/inspections.route.js";
 
 const app = express();
-const PORT = 3000;
 
-app.get('/ask-gpt3', async (req, res) => {
-    const prompt = req.query.prompt; // Assuming you pass the prompt as a query parameter
-    try {
-        const result = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
-            prompt: prompt,
-            max_tokens: 150
-        }, {
-            headers: {
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-                'Content-Type': 'application/json'
-            }
-        });
+app.use(cors());
+app.use(express.json());
 
-        res.json({ response: result.data.choices[0].text.trim() });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
+app.use("/api/v1/inspections", inspections);
+app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
-app.listen(PORT, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
-});
-
-
+export default app;
