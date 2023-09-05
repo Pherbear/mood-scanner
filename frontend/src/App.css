@@ -1,0 +1,32 @@
+@media (prefers-reduced-motion: no-preference) {
+    html {
+          scroll-behavior: smooth;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    border: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+html {
+    -webkit-text-size-adjust: none; /* for iOS Safari */
+    text-size-adjust: none; /* for other mobile browsers */
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.navbar-title{
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+}

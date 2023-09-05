@@ -1,9 +1,77 @@
 import React from "react";
-import GPT3Ask from "./components/GPT3Ask";
+import {Switch, Route, Link} from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./App.css"
+
+import AddReview from "./components/add-review";
+import Login from "./components/login";
+import Restaurants from "./components/restaurants";
+import RestaurantsList from "./components/restaurants-list";
 
 function App() {
+  const [user, setUser] = React.useState(null)
+
+  async function login(user = null) {
+    setUser(user)
+  }
+
+  async function logout(){
+    setUser(null)
+  }
+
   return (
-    <GPT3Ask/>
+    <div>
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <a href="/restaurants" className="navbar-brand">
+          <a className="navbar-title">
+            Restaurant Reviews
+          </a>
+        </a>
+        <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to={"/restuarants"} className="nav-link">
+              Restaurants
+            </Link>
+          </li>
+          <li className="nav-item">     
+            { user 
+              ? (
+                <a onClick={logout} className="nav-link" style={{cursor: 'point'}}>
+                  Logout {user.name}
+                </a>
+              ) : (
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              )}
+          </li>
+        </div>
+      </nav>
+
+      <div className="container mt-3">
+        <Switch>
+          <Route exact path={["/", "/restaurants"]} component = {RestaurantsList} />
+          <Route 
+            path ="/restaurants/:id/review"
+            render = {(props) => (
+              <AddReview {...props} user={user} />
+            )}
+            />
+          <Route
+            path = "/restaurants/:id"
+            render = {(props) => (
+              <Restaurants {...props} user={user} />
+            )}  
+          />
+          <Route
+            path = "/login"
+            render = {(props) => (
+              <Login {...props} user={user} />
+            )}  
+          />
+        </Switch>
+      </div>
+    </div>
   );
 }
 
