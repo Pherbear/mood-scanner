@@ -1,5 +1,5 @@
-import React from "react";
-import {Switch, Route, Link} from "react-router-dom"
+import React, { useState } from "react";
+import {BrowserRouter as Router, Route, Routes, Link, Switch} from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 
@@ -10,6 +10,7 @@ import RestaurantsList from "./components/restaurants-list";
 
 function App() {
   const [user, setUser] = React.useState(null)
+  const props = useState(null)
 
   async function login(user = null) {
     setUser(user)
@@ -22,14 +23,14 @@ function App() {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <a href="/restaurants" className="navbar-brand">
+        <a href="/" className="navbar-brand">
           <a className="navbar-title">
             Restaurant Reviews
           </a>
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/restuarants"} className="nav-link">
+            <Link to={"/restaurants"} className="nav-link">
               Restaurants
             </Link>
           </li>
@@ -49,27 +50,28 @@ function App() {
       </nav>
 
       <div className="container mt-3">
-        <Switch>
-          <Route exact path={["/", "/restaurants"]} component = {RestaurantsList} />
+        <Routes>
+          <Route exact 
+            path="/" 
+            element = {<RestaurantsList/>} 
+            />
+          <Route exact 
+            path="/restaurants" 
+            element = {<RestaurantsList/>} 
+            />
           <Route 
             path ="/restaurants/:id/review"
-            render = {(props) => (
-              <AddReview {...props} user={user} />
-            )}
+            Component = {(props) => (<AddReview {...props} user={user}/>)}
             />
           <Route
             path = "/restaurants/:id"
-            render = {(props) => (
-              <Restaurants {...props} user={user} />
-            )}  
-          />
+            Component = {(props) => (<Restaurants {...props} user={user}/>)}   
+            />
           <Route
             path = "/login"
-            render = {(props) => (
-              <Login {...props} user={user} />
-            )}  
+            Component = {(props) => (<Login {...props} login={login} />)}               
           />
-        </Switch>
+        </Routes>
       </div>
     </div>
   );
