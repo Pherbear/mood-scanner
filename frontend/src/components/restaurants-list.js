@@ -86,7 +86,7 @@ const RestaurantsList = props => {
   return (
     <div>
       <div className='row pb-1'>
-        <div className='input-group col-lg-4'>
+        <div className='input-group col-lg-4 search'>
           <input
             type="text"
             className='form-control'
@@ -94,7 +94,7 @@ const RestaurantsList = props => {
             value={searchName}
             onChange={onChangeSearchName}
           />
-          <div className='input-group-append'>
+          <div className='input-group-append search-button'>
             <button
               className='btn btn-outline-secondary'
               type="button"
@@ -104,7 +104,7 @@ const RestaurantsList = props => {
             </button>
           </div>
         </div>
-        <div className='input-group col-lg-4'>
+        <div className='input-group col-lg-4 search'>
           <input
             type="text"
             className='form-control'
@@ -112,7 +112,7 @@ const RestaurantsList = props => {
             value={searchZip}
             onChange={onChangeSearchZip}
           />
-          <div className='input-group-append'>
+          <div className='input-group-append search-button'>
             <button
               className='btn btn-outline-secondary'
               type="button"
@@ -123,14 +123,14 @@ const RestaurantsList = props => {
           </div>
         </div>
         <div className='input-group col-lg-4'>
-          <select onChange={onChangeSearchCuisine}>
+          <select onChange={onChangeSearchCuisine} className='drop-down'>
             {cuisines.map(cuisine =>{
               return(
                 <option value={cuisine}>{cuisine.substr(0,20)}</option>
               )
             })}
           </select>
-          <div className='input-group-append'>
+          <div className='input-group-append search-button'>
             <button
               className='btn btn-outline-secondary'
               type='button'
