@@ -50,3 +50,15 @@ html {
     border-style: double;
     border-radius: 5%;
 }
+
+.drop-down-group{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.search-group{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 50px;
+    column-gap: 10px;
+}

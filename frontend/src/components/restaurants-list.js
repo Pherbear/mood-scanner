@@ -85,7 +85,7 @@ const RestaurantsList = props => {
 
   return (
     <div>
-      <div className='row pb-1'>
+      <div className='row pb-1 search-group'>
         <div className='input-group col-lg-4 search'>
           <input
             type="text"
@@ -122,7 +122,7 @@ const RestaurantsList = props => {
             </button>
           </div>
         </div>
-        <div className='input-group col-lg-4'>
+        <div className='input-group col-lg-4 drop-down-group'>
           <select onChange={onChangeSearchCuisine} className='drop-down'>
             {cuisines.map(cuisine =>{
               return(
