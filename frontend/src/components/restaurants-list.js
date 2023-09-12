@@ -142,11 +142,11 @@ const RestaurantsList = props => {
 
         </div>
       </div>
-      <div className='row'>
+      <div className='restaurants'>
         {restaurants.map((restaurant) => {
           const address = `${restaurant.address.building} ${restaurant.address.street}, ${restaurant.address.zipcode}`
           return(
-            <div className='col-lg-4 pb-1'>
+            <div className='pb-1'>
               <div className='card'>
                 <div className='card-body'>
                   <h5 className='card-title'>{restaurant.name}</h5>
@@ -154,7 +154,7 @@ const RestaurantsList = props => {
                     <strong>Cuisine: </strong>{restaurant.cuisine}<br/>
                     <strong>Address: </strong>{address}
                   </p>
-                  <div className='row'>
+                  <div className='row item-buttons'>
                     <Link to={"/restaurants/"+restaurant._id} className='btn btn-primary col-lg-5 mx-1 mb-1'>
                       View Reviews
                     </Link>

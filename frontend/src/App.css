@@ -31,11 +31,6 @@ html {
     color: inherit;
 }
 
-.container {
-    display: grid;
-    grid-template-rows: repeat(4,100px);
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
-}
 .search{
     padding: 5px;
 }
@@ -46,14 +41,18 @@ html {
 }
 
 .drop-down{
-    border-color: grey;
-    border-style: double;
-    border-radius: 5%;
+    border-color: rgb(224, 223, 223);
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    height: 40px;
 }
 
 .drop-down-group{
+    position: relative;
     display:grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 4fr 1fr;
+    top: 5px;
 }
 
 .search-group{
@@ -61,4 +60,34 @@ html {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 50px;
     column-gap: 10px;
+}
+
+.restaurants{
+    column-gap:10px;
+    row-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.card{
+    width: 100%;
+    height: 100%;
+    --bs-card-spacer-y: 1rem;
+    --bs-card-spacer-x: 1rem;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: baseline;
+}
+
+.card-body{
+
+}
+
+.item-buttons{
+    justify-content: center;
+    position: relative;
+    bottom: 0px;
 }
